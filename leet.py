@@ -1,30 +1,43 @@
+from typing import Optional
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 class Solution:
-    def isValid(self, s: str) -> bool:
-            diction  = {
-                ']':'[',
-                '}' :'{',
-                ')' : '(',
-            }
-            stack = []
-            if len(s) == 1:
-                  return False
-            for char in s:
-                  
-                  if char in diction and stack and    stack[-1] == diction.get(char) :
-                       stack.pop()
-                  else:
-                        stack.append(char)
-            if stack: return False
-            else : return True
-
-                  
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+       newmerge=  ListNode()
+       tail = newmerge
+       while list1 and list2:
+           if list1.val< list2.val:
+               tail.next = list1
+               list1=list1.next
+               
+           else:
+               tail.next = list2
+               list2=list2.next
+           tail = tail.next
+               
+       if not list1:
+           tail.next = list2
+       else :
+           tail.next = list1 
 
 
+           
 
- 
-my_string = "){"
-result = Solution.isValid(None, s=my_string)  
-print(result)
 
-       
-        
+       return newmerge.next
+
+
+list1 = ListNode(1)
+list1.next = ListNode(2)
+list1.next.next = ListNode(4)
+
+
+# 1 -> 3 -> 4
+list2 = ListNode(1)
+list2.next = ListNode(3)
+list2.next.next = ListNode(4) 
+yes = Solution.mergeTwoLists(None,list1 = list1, list2 = list2)
+
+print(yes)
