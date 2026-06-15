@@ -1,19 +1,29 @@
-memo= {}
-def climbStairs( n: int) -> int:
-    
-        if n in memo:
-             return memo[n]
-        if n ==0 :
-            return 1 
-        if n <0:
-            return 0
-        a=  climbStairs(n=n-1) +climbStairs(n=n-2)
-        memo[n] = a
-
+from typing import List
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        digits = digits[::-1]
+        if digits[0] != 9:
+            digits[0]=digits[0]+1
+            return digits[::-1]
+        for i in range(len(digits)):
             
-        return a
+            if digits[i] !=9:    
+                print(digits[i])
+                digits[i] = digits[i] +1
+                return digits[::-1]
+            digits[i] =0
+            
+        digits.append(1)
+        return digits[::-1]
 
-        
-        
-test =climbStairs(5)
-print(test)
+
+
+
+
+
+yes = Solution.plusOne(None,[8,9,9,9])
+
+
+
+
+print( yes)
